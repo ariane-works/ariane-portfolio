@@ -1,68 +1,72 @@
-// Banner typing effect
-const typedText = "I am the protagonist of my own story. When we believe in ourselves, everything is possible.";
-let i = 0;
-function typeEffect() {
-  if (i < typedText.length) {
-    document.getElementById('typed-text').innerHTML += typedText.charAt(i);
-    i++;
-    setTimeout(typeEffect, 50);
-  }
-}
-typeEffect();
+document.addEventListener('DOMContentLoaded', () => {
+    // Função para toggle do menu em dispositivos móveis
+    const navLinks = document.querySelector('.nav-links');
+    const menuToggle = document.createElement('div');
+    menuToggle.classList.add('menu-toggle');
+    menuToggle.innerHTML = '&#9776;'; // Ícone de hambúrguer
+    document.querySelector('nav').insertBefore(menuToggle, navLinks);
 
-// Dark Mode
-document.getElementById('darkModeBtn').addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    // Animação de digitação no Hero Section
+    const typedTextElement = document.querySelector('#hero h1');
+    const fullText = "Olá, eu sou a Ariane Oliveira.";
+    let charIndex = 0;
+
+    function typeEffect() {
+        if (typedTextElement && charIndex < fullText.length) {
+            typedTextElement.textContent += fullText.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeEffect, 70); // Velocidade de digitação
+        }
+    }
+    // Começa a animação de digitação alguns milissegundos após o carregamento da página
+    setTimeout(typeEffect, 500);
+
+
+    // Opcional: Implementar Dark Mode (Exemplo simples)
+    // Para ter um botão de Dark Mode no header, você precisaria adicioná-lo no HTML.
+    // Exemplo de botão no HTML: <button id="darkModeToggle">🌙</button>
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            // Salvar preferência no localStorage, se quiser
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        // Carregar preferência do usuário ao carregar a página
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    }
 });
 
-// Menu toggle (mobile)
-function toggleMenu() {
-  document.querySelector('.nav-links').classList.toggle('active');
-}
+// Animação de rolagem para seções
+const sections = document.querySelectorAll('.content-section');
 
-// Carousel - LÓGICA CORRIGIDA
-let index = 0;
-function moveCarousel(direction) {
-  const carousel = document.querySelector('.carousel');
-  const cards = document.querySelectorAll('.card');
-  const cardWidth = cards[0].offsetWidth + 20; // 20px de margem
-  const totalCards = cards.length;
-  const cardsInView = Math.floor(carousel.offsetWidth / cardWidth);
+const options = {
+    threshold: 0.1 // A seção se torna visível quando 10% dela entra na viewport
+};
 
-  index += direction;
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target); // Para animar apenas uma vez
+        }
+    });
+}, options);
 
-  // Garante que o índice não seja menor que 0 ou maior que o limite
-  if (index < 0) {
-    index = 0;
-  } else if (index > totalCards - cardsInView) {
-    index = totalCards - cardsInView;
-  }
-  
-  // Previne que o carrossel se mova se já estiver no limite
-  if (index >= 0 && index <= totalCards - cardsInView) {
-    carousel.style.transform = translateX(-${index * cardWidth}px);
-  }
-}
-
-// Modal
-function openModal(title, text) {
-  document.getElementById('modal-title').innerText = title;
-  document.getElementById('modal-text').innerText = text;
-  document.getElementById('modal').style.display = 'flex';
-}
-function closeModal() { document.getElementById('modal').style.display = 'none'; }
-
-// Contact form
-document.getElementById('contactForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  alert(Message sent! Thank you, ${document.getElementById('name').value});
-  this.reset();
-});
-
-// Scroll animation
-const faders = document.querySelectorAll('.fade-in');
-window.addEventListener('scroll', () => {
-  faders.forEach(el => {
-    if(el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('show');
-  });
+sections.forEach(section => {
+    section.style.opacity = 0;
+    section.style.transform = 'translateY(50px)';
+    section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+    observer.observe(section);
 });
