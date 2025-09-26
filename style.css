@@ -1,0 +1,368 @@
+/* Definição das cores da paleta */
+:root {
+    --primary-blue: #1A5276; /* Azul Escuro */
+    --secondary-gray: #85929E; /* Cinza Azulado */
+    --accent-color: #5DADE2; /* Um azul um pouco mais claro para detalhes */
+    --text-dark: #333;
+    --text-light: #f9f9f9;
+    --background-light: #ffffff;
+    --background-dark: #1e1e1e;
+    --card-background: #f0f0f0;
+    --card-background-dark: #2a2a2a;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Modo Escuro (Dark Mode) - opcional, mas mostra domínio */
+body.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+
+body.dark-mode header {
+    background-color: var(--primary-blue);
+}
+
+body.dark-mode .nav-links a, body.dark-mode .logo {
+    color: var(--text-light);
+}
+
+body.dark-mode .content-section {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+}
+
+body.dark-mode .skill-item, body.dark-mode .project-card {
+    background-color: var(--card-background-dark);
+    color: var(--text-light);
+    border: 1px solid var(--secondary-gray);
+}
+
+body.dark-mode .btn-primary {
+    background-color: var(--accent-color);
+    color: var(--background-dark);
+}
+
+body.dark-mode .btn-secondary {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+    background-color: #3a3a3a;
+    color: var(--text-light);
+    border: 1px solid #555;
+}
+
+
+/* Cabeçalho */
+header {
+    background-color: var(--primary-blue);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--text-light);
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+/* Seções de Conteúdo Genéricas */
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.content-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: var(--primary-blue);
+    position: relative;
+}
+
+.content-section h2::after {
+    content: '';
+    width: 80px;
+    height: 4px;
+    background-color: var(--accent-color);
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+/* Seção Hero */
+.hero-section {
+    background-color: var(--secondary-gray);
+    color: var(--text-light);
+    text-align: center;
+    padding: 120px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Para garantir que ocupe boa parte da tela */
+}
+
+.profile-pic-hero {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--accent-color);
+    margin-bottom: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+}
+
+/* Botões */
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    border: 2px solid var(--primary-blue);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--text-dark);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+    margin-left: 20px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+}
+
+/* Habilidades */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.skill-item {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-weight: bold;
+    color: var(--primary-blue);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-8px);
+    background-color: var(--accent-color);
+    color: var(--text-light);
+}
+
+/* Projetos */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.project-card {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+.project-card h3 {
+    color: var(--primary-blue);
+    margin-top: 0;
+    font-size: 1.8rem;
+}
+
+.project-card p {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+/* Formulário de Contato */
+.contact-form {
+    max-width: 600px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 15px;
+    border: 1px solid var(--secondary-gray);
+    border-radius: 5px;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+}
+
+.contact-form button {
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.9rem;
+}
+
+footer .social-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+footer .social-links a:hover {
+    color: var(--accent-color);
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        display: none; /* Esconde o menu por padrão no mobile */
+        width: 100%;
+        background-color: var(--primary-blue);
+        position: absolute;
+        top: 60px; /* Ajuste para ficar abaixo do header */
+        left: 0;
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+    .nav-links.active {
+        display: flex; /* Mostra o menu quando ativo */
+    }
+    .nav-links li {
+        text-align: center;
+        margin: 10px 0;
+    }
+    .logo {
+        padding-left: 20px;
+    }
+    .menu-toggle {
+        display: block; /* Mostra o ícone do hambúrguer */
+        font-size: 2rem;
+        cursor: pointer;
+        padding-right: 20px;
+        color: var(--text-light);
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+    .content-section h2 {
+        font-size: 2rem;
+    }
+    .skills-grid, .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    .project-card {
+        padding: 20px;
+    }
+}
+
+/* Menu Toggle (apenas para mobile) */
+.menu-toggle {
+    display: none; /* Esconde o ícone do hambúrguer em desktops */
+}
