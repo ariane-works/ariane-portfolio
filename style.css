@@ -135,6 +135,7 @@ section {
 /* Dark Mode */
 .dark-mode { background: var(--background-dark); color: var(--text-dark); }
 .dark-mode header { background: #0D47A1; }
+
 .profile-pic {
   width: 150px;
   height: 150px;
