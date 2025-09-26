@@ -11,19 +11,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Animação de digitação no Hero Section
-    const typedTextElement = document.querySelector('#hero h1');
-    const fullText = "Olá, eu sou a Ariane Oliveira.";
-    let charIndex = 0;
+const typedTextElement = document.getElementById('hero-text');
+const fullText = "Olá, eu sou a Ariane Oliveira.";
+let charIndex = 0;
 
-    function typeEffect() {
-        if (typedTextElement && charIndex < fullText.length) {
-            typedTextElement.textContent += fullText.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeEffect, 70); // Velocidade de digitação
-        }
+function typeEffect() {
+    if (typedTextElement && charIndex < fullText.length) {
+        typedTextElement.textContent += fullText.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeEffect, 70); // Velocidade de digitação
     }
-    // Começa a animação de digitação alguns milissegundos após o carregamento da página
-    setTimeout(typeEffect, 500);
+}
+
+// Começa a animação de digitação após 500ms
+setTimeout(typeEffect, 500);
 
 
     // Opcional: Implementar Dark Mode (Exemplo simples)
