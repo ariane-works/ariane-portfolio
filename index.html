@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ariane Oliveira Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Ariane Oliveira</div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <ul class="nav-links">
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#fun-facts">Fun Facts</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button id="darkModeBtn">🌙</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Banner com frase inspiradora -->
+  <section id="banner">
+    <h1 id="typed-text"></h1>
+  </section>
+
+  <!-- Sobre Mim com foto -->
+  <section id="about" class="fade-in">
+    <h2>About Me</h2>
+    <img src="images/ariane.jpg" alt="Ariane Oliveira" class="profile-pic">
+    <p>Hello! I'm Ariane, a beginner web developer passionate about creating interactive interfaces. I love learning new technologies and I believe that when we believe in ourselves, everything is possible. I’m always seeking to improve, explore ideas, and turn challenges into opportunities.</p>
+    <ul class="skills">
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+      <li>React (future)</li>
+    </ul>
+  </section>
+
+  <!-- Projetos -->
+  <section id="projects" class="fade-in">
+    <h2>My Projects</h2>
+    <div class="carousel-container">
+      <button class="prev" onclick="moveCarousel(-1)">&#10094;</button>
+      <div class="carousel">
+        <div class="card">
+          <h3>Project 1</h3>
+          <p>Interactive portfolio website</p>
+          <button onclick="window.location.href='project1/index.html'">See More</button>
+        </div>
+        <div class="card">
+          <h3>Project 2</h3>
+          <p>Web task management app</p>
+          <button onclick="window.location.href='project2/index.html'">See More</button>
+        </div>
+        <div class="card">
+          <h3>Project 3</h3>
+          <p>Mini interactive game</p>
+          <button onclick="window.location.href='project3/index.html'">See More</button>
+        </div>
+      </div>
+      <button class="next" onclick="moveCarousel(1)">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- Curiosidades / Fun Facts -->
+  <section id="fun-facts" class="fade-in">
+    <h2>Fun Facts About Me</h2>
+    <ul>
+      <li>I love learning something new every day, whether in web development or in life.</li>
+      <li>I always try to turn challenges into growth opportunities.</li>
+      <li>I am passionate about technology and creating things from scratch.</li>
+    </ul>
+  </section>
+
+  <!-- Contato -->
+  <section id="contact" class="fade-in">
+    <h2>Contact</h2>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3 id="modal-title"></h3>
+      <p id="modal-text"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
