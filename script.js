@@ -2,7 +2,7 @@
 const typedText = "I am the protagonist of my own story. When we believe in ourselves, everything is possible.";
 let i = 0;
 function typeEffect() {
-  if(i < typedText.length){
+  if (i < typedText.length) {
     document.getElementById('typed-text').innerHTML += typedText.charAt(i);
     i++;
     setTimeout(typeEffect, 50);
@@ -20,16 +20,28 @@ function toggleMenu() {
   document.querySelector('.nav-links').classList.toggle('active');
 }
 
-// Carousel
+// Carousel - LÓGICA CORRIGIDA
 let index = 0;
 function moveCarousel(direction) {
   const carousel = document.querySelector('.carousel');
-  const cardWidth = document.querySelector('.card').offsetWidth + 20;
+  const cards = document.querySelectorAll('.card');
+  const cardWidth = cards[0].offsetWidth + 20; // 20px de margem
+  const totalCards = cards.length;
+  const cardsInView = Math.floor(carousel.offsetWidth / cardWidth);
+
   index += direction;
-  const maxIndex = document.querySelectorAll('.card').length - Math.floor(carousel.offsetWidth / cardWidth);
-  if(index < 0) index = 0;
-  if(index > maxIndex) index = maxIndex;
-  carousel.style.transform = translateX(-${index * cardWidth}px);
+
+  // Garante que o índice não seja menor que 0 ou maior que o limite
+  if (index < 0) {
+    index = 0;
+  } else if (index > totalCards - cardsInView) {
+    index = totalCards - cardsInView;
+  }
+  
+  // Previne que o carrossel se mova se já estiver no limite
+  if (index >= 0 && index <= totalCards - cardsInView) {
+    carousel.style.transform = translateX(-${index * cardWidth}px);
+  }
 }
 
 // Modal
