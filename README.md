@@ -1,2 +1,2 @@
 # ariane-portfolio
-Interactive personal portifolio built with HTML.CSS and JavaScript
+Interactive personal portfolio built with HTML.CSS and JavaScript
